@@ -4,21 +4,22 @@
 #include <iplugintool.h>
 
 class HelloWorld : public MOBase::IPluginTool {
-    // need to call Q_OBJECT macro. This is required for the Qt moc preprocessor
-    // and will cause ugly compiler errors if missing
+
+    // Q_OBJECT macro, required for the Qt moc preprocessor and will cause ugly compiler
+    // errors if missing
     Q_OBJECT
 
-    // List all interfaces being implemented. Again: hard to diagnose if missing
+    // list all interfaces being implemented, again, hard to diagnose if missing
     Q_INTERFACES(MOBase::IPlugin MOBase::IPluginTool)
 
-    // compiled Qt plugins require an id and json file for meta information
+    // compiled Qt plugins require an ID, use whatever you like
     Q_PLUGIN_METADATA(IID "org.mo2.HelloWorld")
 
 public:
+    // you need a default constructor
     HelloWorld();
 
     // IPlugin interface
-
     bool init(MOBase::IOrganizer* moInfo) override;
     QString name() const override;
     QString author() const override;
@@ -27,7 +28,6 @@ public:
     QList<MOBase::PluginSetting> settings() const override;
 
     // IPluginTool interface
-
     QString displayName() const override;
     QString tooltip() const override;
     QIcon icon() const override;

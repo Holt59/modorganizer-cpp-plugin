@@ -37,3 +37,63 @@ cmake --build . --target all --config RelWithDebInfo
 ```
 
 This will create `test-cpp-plugind.dll` and put it in your MO2 plugins folder.
+
+## VS Code
+
+### Extensions
+
+Install the required extensions for VS Code: CMake, C/C++, etc.
+
+### Building
+
+With the CMake extension, you can build by running the `CMake: Build` command or
+clicking on the build icon on the task bar.
+
+### Debugging
+
+Create the following `launch.json` file in the `.vscode` folder (replace `${MO2_PATH}`
+with the path to your MO2 installation):
+
+```json
+// .vscode/launch.json
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "MO2 Debug",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${MO2_PATH}/ModOrganizer.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${MO2_PATH}/bin",
+        }
+    ]
+}
+```
+
+If you want to automatically build before installing, create the following task in
+`.vscode/tasks.json` and add `"preLaunchTask": "CMake: Build & Install"` to the launch
+configuration above:
+
+```json
+// .vscode/tasks.json
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "CMake: Build & Install",
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "command": "cmake --build build --target install --config RelWithDebInfo"
+        }
+    ]
+}
+```
