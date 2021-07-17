@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/MO2/test-cpp-plugin">
+        <file alias="icon">res/icon.png</file>
+    </qresource>
+</RCC>

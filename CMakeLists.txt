@@ -3,6 +3,8 @@ cmake_minimum_required(VERSION 3.13)
 # name of your project
 project(test-cpp-plugin)
 
+set(MO2_PATH "I:/Projects/ModOrganizer2/mo2-mdc/install/bin")
+
 # BEGIN: uibase settings
 
 # WARNING: Do not modify this, or at your own risk.

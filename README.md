@@ -2,6 +2,7 @@
 
 ## Requirements
 
+- A valid MO2 installation.
 - Microsoft Visual C++ Build Tools, you can download them from the
   [Visual Studio download page](https://visualstudio.microsoft.com/downloads/) (bottom
   of the page, under "Tools for Visual Studio 2019")
@@ -25,13 +26,14 @@
 # create a folder "build" and move to it
 mkdir build && cd build
 
-# PATH_TO_QT should point to your Qt installation, it usually ends
-# in 5.15.2\msvc2019_64\ (for Qt5.15.2)
-cmake .. -DCMAKE_PREFIX_PATH=${PATH_TO_QT}
+# - PATH_TO_MO2 should point to your MO2 installation (the root
+#   folder containing the main executable)
+# - PATH_TO_QT should point to your Qt installation, it usually ends
+#   in 5.15.2\msvc2019_64\ (for Qt5.15.2)
+cmake ..  -DMO2_PATH=${PATH_TO_MO2} -DCMAKE_PREFIX_PATH=${PATH_TO_QT}
 
-# build the project
-cmake --build . --target RelWithDebInfo
+# build the project and install the plugin
+cmake --build . --target all --config RelWithDebInfo
 ```
 
-This will create `test-cpp-plugind.dll` under `build/src/RelWithDebInfo` in your folder,
-you are now ready.
+This will create `test-cpp-plugind.dll` and put it in your MO2 plugins folder.
