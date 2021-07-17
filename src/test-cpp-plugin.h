@@ -22,6 +22,7 @@ public:
     // IPlugin interface
     bool init(MOBase::IOrganizer* moInfo) override;
     QString name() const override;
+    QString localizedName() const override;
     QString author() const override;
     QString description() const override;
     MOBase::VersionInfo version() const override;

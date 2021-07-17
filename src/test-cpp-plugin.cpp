@@ -36,6 +36,13 @@ QString HelloWorld::name() const
     return "Hello World";
 }
 
+QString HelloWorld::localizedName() const
+{
+    // the localized name of your plugin - this is optional, if you do not override
+    // localizedName(), the internal name (non-localized) will be used
+    return tr("Hello World");
+}
+
 QString HelloWorld::author() const
 {
     // your name
@@ -45,7 +52,7 @@ QString HelloWorld::author() const
 QString HelloWorld::description() const
 {
     // a description of your plugin. This should be short and descriptive
-    return tr("Gives a friendly greeting");
+    return tr("Gives a friendly greeting.");
 }
 
 VersionInfo HelloWorld::version() const
