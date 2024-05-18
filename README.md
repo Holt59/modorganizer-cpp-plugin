@@ -10,27 +10,19 @@
     any IDE you want, but if you want to use Visual Studio 2019, feel free
     to do so (CMake can generate a solution for you).
 - CMake (>= 3.13), download from [the official website](https://cmake.org/download/).
-- Qt 5.15.2, download from [the official website](https://www.qt.io/download).
-- `uibase` headers and library.
-  - **Note:** These are currently included in the `uibase` folder but might be
-    removed in the future.
+- Qt 6.5.0, download from [the official website](https://www.qt.io/download).
 
 ## Setup
 
 1. Clone the repository.
-2. Put the `uibase` headers (`.h`) and library (`.lib`) in the `uibase` subfolder
-   if not already there.
-3. Run the following commands (from the root of the repository):
+2. Run the following commands (from the root of the repository):
 
 ```bash
-# create a folder "build" and move to it
-mkdir build && cd build
-
 # - PATH_TO_MO2 should point to your MO2 installation (the root
 #   folder containing the main executable)
 # - PATH_TO_QT should point to your Qt installation, it usually ends
 #   in 5.15.2\msvc2019_64\ (for Qt5.15.2)
-cmake ..  -DMO2_PATH=${PATH_TO_MO2} -DCMAKE_PREFIX_PATH=${PATH_TO_QT}
+cmake -B build .  -DMO2_PATH=${PATH_TO_MO2} -DCMAKE_PREFIX_PATH=${PATH_TO_QT}
 
 # build the project and install the plugin
 cmake --build . --target all --config RelWithDebInfo
