@@ -20,7 +20,7 @@ To build and install the plugin, simply run:
 ```pwsh
 # set CMAKE_PREFIX_PATH to the appropriate location and CMAKE_INSTALL_PREFIX to the
 # folder containing your MO2 installation (the one with ModOrganizer.exe)
-cmake --preset vs2022-windows-standalone "-DCMAKE_PREFIX_PATH=C:\Qt\6.7.0\msvc2019_64\" "-DCMAKE_INSTALL_PREFIX=path\to\mo2"
+cmake --preset vs2022-windows-standalone "-DCMAKE_PREFIX_PATH=C:\Qt\6.7.3\msvc2022_64\" "-DCMAKE_INSTALL_PREFIX=C:\Modding\MO2"
 
 # this will build the project and install the plugins under plugins/ in your MO2
 # installation, making it available after the next restart of MO2
