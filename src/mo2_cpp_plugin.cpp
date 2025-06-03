@@ -1,6 +1,6 @@
 #include <QMessageBox>
 
-#include "test-cpp-plugin.h"
+#include "mo2_cpp_plugin.h"
 #include "ui/ui_dialog.h"
 
 using namespace MOBase;

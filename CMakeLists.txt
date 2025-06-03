@@ -1,15 +1,28 @@
-cmake_minimum_required(VERSION 3.13)
+cmake_minimum_required(VERSION 3.31)
 
 include(FetchContent)
 
 # name of your project
-project(test-cpp-plugin)
-
-set(MO2_PATH "D:/Utilities/MO2/2.5.0")
-set(MO2_VERSION "2.5.0")
+project(mo2-demo-cpp-plugin)
 
 # MO2 uibase settings
 # WARNING: Do not modify this, or at your own risk.
+
+option(MO2_PATH "Path to the MO2 installation folder.")
+
+if (NOT MO2_PATH)
+  message(FATAL_ERROR "MO2_PATH needs to be specified when configuring.")
+endif()
+
+cmake_path(ABSOLUTE_PATH MO2_PATH)
+
+execute_process(
+    COMMAND powershell -Command "(Get-ItemProperty ${MO2_PATH}\\ModOrganizer.exe).VersionInfo.ProductVersion"
+    OUTPUT_VARIABLE MO2_VERSION
+    OUTPUT_STRIP_TRAILING_WHITESPACE
+)
+
+message(STATUS "Detected MO2 version ${MO2_VERSION}.")
 
 FetchContent_Declare(
   uibase
@@ -32,7 +45,7 @@ add_library(uibase STATIC IMPORTED)
 set_target_properties(uibase PROPERTIES
     IMPORTED_LOCATION "${uibase_SOURCE_DIR}/uibase.lib")
 target_link_libraries(uibase INTERFACE Qt6::Widgets)
-target_include_directories(uibase INTERFACE "${uibase_SOURCE_DIR}")
+target_include_directories(uibase INTERFACE "${uibase_SOURCE_DIR}" "${uibase_SOURCE_DIR}/game_features")
 
 # END: uibase settings
 

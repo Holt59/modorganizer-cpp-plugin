@@ -10,7 +10,7 @@
     any IDE you want, but if you want to use Visual Studio 2019, feel free
     to do so (CMake can generate a solution for you).
 - CMake (>= 3.13), download from [the official website](https://cmake.org/download/).
-- Qt 6.5.0, download from [the official website](https://www.qt.io/download).
+- Qt, download from [the official website](https://www.qt.io/download).
 
 ## Setup
 
@@ -20,15 +20,15 @@
 ```bash
 # - PATH_TO_MO2 should point to your MO2 installation (the root
 #   folder containing the main executable)
-# - PATH_TO_QT should point to your Qt installation, it usually ends
-#   in 5.15.2\msvc2019_64\ (for Qt5.15.2)
-cmake -B build .  -DMO2_PATH=${PATH_TO_MO2} -DCMAKE_PREFIX_PATH=${PATH_TO_QT}
+# - PATH_TO_QT should point to a Qt installation appropriate for the MO2 version your
+#   are target, e.g., 6.7.1 for MO2 2.5.2
+cmake -B build .  "-DMO2_PATH=C:\Modding\MO2" "-DCMAKE_PREFIX_PATH=C:\Qt\6.7.1\msvc2019_64"
 
 # build the project and install the plugin
-cmake --build . --target all --config RelWithDebInfo
+cmake --build . --config RelWithDebInfo --target INSTALL
 ```
 
-This will create `test-cpp-plugind.dll` and put it in your MO2 plugins folder.
+This will create `mo2_cpp_plugin.dll` and put it in your MO2 plugins folder.
 
 ## VS Code
 
@@ -58,7 +58,7 @@ with the path to your MO2 installation):
             "program": "${MO2_PATH}/ModOrganizer.exe",
             "args": [],
             "stopAtEntry": false,
-            "cwd": "${MO2_PATH}/bin",
+            "cwd": "${MO2_PATH}",
         }
     ]
 }
@@ -79,7 +79,7 @@ configuration above:
             "options": {
                 "cwd": "${workspaceFolder}"
             },
-            "command": "cmake --build build --target install --config RelWithDebInfo"
+            "command": "cmake --build build --target INSTALL --config RelWithDebInfo"
         }
     ]
 }
